@@ -10,6 +10,7 @@ function init() {
     const box = getBox(1, 1, 1);
     const plane = getPlane(20);
     const pointLight = getPointLight(1);
+    const sphere = getSphere(0.05);
 
     plane.name = 'plane-1';
 
@@ -19,6 +20,7 @@ function init() {
 
     scene.add(box);
     scene.add(plane);
+    pointLight.add(sphere);
     scene.add(pointLight);
 
     const camera = new THREE.PerspectiveCamera(
@@ -57,7 +59,7 @@ function getBox(w, h, d) {
 
 function getPlane(size) {
     let geometry = new THREE.PlaneGeometry(size, size);
-    let material = new THREE.MeshBasicMaterial({
+    let material = new THREE.MeshPhongMaterial({
         color: 'rgb(120, 120, 120)',
         side: THREE.DoubleSide
     });
@@ -69,9 +71,9 @@ function getPlane(size) {
 }
 
 function getSphere(size) {
-    let geometry = new THREE.SphereGeometry(size);
-    let material = new THREE.MeshPhongMaterial({
-        color: 'rgb(120, 120, 120)'
+    let geometry = new THREE.SphereGeometry(size, 24, 24);
+    let material = new THREE.MeshBasicMaterial({
+        color: 'rgb(255, 255, 255)'
     });
 
     return new THREE.Mesh(
