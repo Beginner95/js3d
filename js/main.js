@@ -44,6 +44,7 @@ function init() {
     const renderer = new THREE.WebGLRenderer();
 
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true;
     renderer.setClearColor('rgb(120, 120, 120)');
     getId('webgl').appendChild(renderer.domElement);
 
@@ -59,10 +60,13 @@ function getBox(w, h, d) {
         color: 'rgb(120, 120, 120)'
     });
 
-    return new THREE.Mesh(
+    let mesh = new THREE.Mesh(
         geometry,
         material
     );
+
+    mesh.castShadow = true;
+    return mesh;
 }
 
 function getPlane(size) {
@@ -72,10 +76,13 @@ function getPlane(size) {
         side: THREE.DoubleSide
     });
 
-    return new THREE.Mesh(
+    let mesh = new THREE.Mesh(
         geometry,
         material
     );
+
+    mesh.receiveShadow = true;
+    return mesh;
 }
 
 function getSphere(size) {
@@ -91,7 +98,9 @@ function getSphere(size) {
 }
 
 function getPointLight(intensity) {
-    return new THREE.PointLight(0xffffff, intensity);
+    let light = new THREE.PointLight(0xffffff, intensity);
+    light.castShadow = true;
+    return light;
 }
 
 const scene = init();
