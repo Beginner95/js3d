@@ -3,3 +3,30 @@ html, body {
     padding: 0;
     overflow: hidden;
 }
+
+.control-panel {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: white;
+    padding: 10px;
+}
+
+#reload {
+    display: block;
+    margin: 10px auto 0;
+    width: 100%;
+    padding: 5px;
+    border: none;
+    text-transform: lowercase;
+    font-weight: bold;
+}
+
+.control-panel label {
+    display: block;
+}
+
+.control-panel input {
+    display: block;
+    margin-bottom: 5px;
+}

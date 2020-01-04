@@ -6,6 +6,29 @@
     <title>JavaScript 3D</title>
 </head>
 <body>
+    <div class="control-panel">
+        <label for="count">Number rows
+            <input type="text" name="count" value="10">
+        </label>
+
+        <label for="count">Distance cubes
+            <input type="text" name="distance-cubes" value="2">
+        </label>
+        
+        <label for="cube-x">Cube x
+            <input type="text" name="cube-x">
+        </label>
+
+        <label for="cube-y">Cube y
+            <input type="text" name="cube-y">
+        </label>
+
+        <label for="cube-z">Cube z
+            <input type="text" name="cube-z">
+        </label>
+        
+        <button id="reload">Reload area</button>
+    </div>
     <div id="webgl"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.6/dat.gui.min.js"></script>
     <script src="//cdn.rawgit.com/mrdoob/three.js/master/build/three.min.js"></script>
