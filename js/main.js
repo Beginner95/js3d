@@ -46,7 +46,10 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor('rgb(120, 120, 120)');
     getId('webgl').appendChild(renderer.domElement);
-    update(renderer, scene, camera);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    update(renderer, scene, camera, controls);
     return scene;
 }
 
@@ -93,14 +96,16 @@ function getPointLight(intensity) {
 
 const scene = init();
 
-function update(renderer, scene, camera) {
+function update(renderer, scene, camera, controls) {
     renderer.render(
         scene,
         camera
     );
 
+    controls.update();
+
     requestAnimationFrame(function () {
-        update(renderer, scene, camera);
+        update(renderer, scene, camera, controls);
     })
 }
 
