@@ -8,25 +8,25 @@ function init() {
         scene.fog = new THREE.FogExp2(0xffffff, 0.2);
     }
     
-    const box = getBox(1, 1, 1);
-    const plane = getPlane(20);
+    
+    const plane = getPlane(30);
     const pointLight = getPointLight(1);
     const sphere = getSphere(0.05);
+    const boxGrid = getBoxGrid(10, 1.5);
 
     plane.name = 'plane-1';
 
-    box.position.y = box.geometry.parameters.height/2;
     plane.rotation.x = Math.PI/2;
-    pointLight.position.y = 1.25;
-    pointLight.intensity = 2;
+    pointLight.position.y = 5;
+    pointLight.intensity = 1;
 
     gui.add(pointLight, 'intensity', 0, 10);
     gui.add(pointLight.position, 'y', 0, 5);
 
-    scene.add(box);
     scene.add(plane);
     pointLight.add(sphere);
     scene.add(pointLight);
+    scene.add(boxGrid);
 
     const camera = new THREE.PerspectiveCamera(
         45,
@@ -35,9 +35,9 @@ function init() {
         1000
     );
 
-    camera.position.x = 1;
-    camera.position.y = 2;
-    camera.position.z = 5;
+    camera.position.x = 8;
+    camera.position.y = 15;
+    camera.position.z = 25;
 
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 
@@ -52,6 +52,28 @@ function init() {
 
     update(renderer, scene, camera, controls);
     return scene;
+}
+
+function getBoxGrid(amount, separationMultiplier) {
+    let group = new THREE.Group();
+
+    for (let i = 0; i < amount; i++) {
+        let obj = getBox(1, 2, 1);
+        obj.position.x = i * separationMultiplier;
+        obj.position.y = obj.geometry.parameters.height/2;
+        group.add(obj);
+        for (let j = 1; j < amount; j++) {
+            let obj = getBox(1, 2, 1);
+            obj.position.x = i * separationMultiplier;
+            obj.position.y = obj.geometry.parameters.height/2;
+            obj.position.z = j * separationMultiplier;
+            group.add(obj);
+        }
+    }
+
+    group.position.x = -(separationMultiplier * (amount - 1))/2;
+    group.position.z = -(separationMultiplier * (amount - 1))/2;
+    return group;
 }
 
 function getBox(w, h, d) {
