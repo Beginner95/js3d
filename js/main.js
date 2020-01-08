@@ -10,7 +10,7 @@ function init() {
     
     
     const plane = getPlane(30);
-    const spotLight = getSpotLight(1);
+    const spotLight = getDirectionalLight(1);
     const sphere = getSphere(0.05);
     const boxGrid = getBoxGrid(10, 1.5);
 
@@ -134,6 +134,12 @@ function getSpotLight(intensity) {
     light.shadow.bias = 0.001;
     light.shadow.mapSize.width = 2048;
     light.shadow.mapSize.height = 2048;
+    return light;
+}
+
+function getDirectionalLight(intensity) {
+    let light = new THREE.DirectionalLight(0xffffff, intensity);
+    light.castShadow = true;
     return light;
 }
 
