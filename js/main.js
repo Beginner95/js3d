@@ -24,7 +24,6 @@ function init() {
     gui.add(spotLight.position, 'x', 0, 25);
     gui.add(spotLight.position, 'y', 0, 25);
     gui.add(spotLight.position, 'z', 0, 25);
-    gui.add(spotLight, 'penumbra', 0, 1);
 
     scene.add(plane);
     spotLight.add(sphere);
